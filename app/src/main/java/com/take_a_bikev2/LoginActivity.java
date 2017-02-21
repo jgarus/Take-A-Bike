@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity{
         Toast.makeText(getBaseContext(), "Login Successful", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true); //If the user is a student then open MainActivity
-        Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+        Intent myIntent = new Intent(LoginActivity.this, MapsActivity.class);
         LoginActivity.this.startActivity(myIntent);
         finish();
     }
