@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">Take-A-Bike</string>
+    <string name="app_name">Take-A-Bikev3</string>
     <string name="title_activity_main"></string>
     <string name="title_activity_login">Take-A-Bike LOGIN</string>
     <string name="title_activity_maps">Map</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
