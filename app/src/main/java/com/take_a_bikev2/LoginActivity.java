@@ -22,9 +22,11 @@ import java.util.regex.Pattern;
 
 /**
  * Created by David on 2/14/2017.
+ *
  */
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity {
+
 
     static EditText _emailText;
     static EditText _passwordText;
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         setContentView(R.layout.activity_login);
 
@@ -86,7 +89,7 @@ public class LoginActivity extends AppCompatActivity{
         _loginButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.SplashTheme);
+                R.style.MainTheme);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");
         progressDialog.show();
@@ -108,5 +111,6 @@ public class LoginActivity extends AppCompatActivity{
         LoginActivity.this.startActivity(myIntent);
         finish();
     }
+
 
 }

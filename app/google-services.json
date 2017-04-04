@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "49902264836",
+    "firebase_url": "https://takeabike-7c789.firebaseio.com",
+    "project_id": "takeabike-7c789",
+    "storage_bucket": "takeabike-7c789.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49902264836:android:011a73afe554bb10",
+        "android_client_info": {
+          "package_name": "com.take_a_bikev2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49902264836-9qbn22ftmpioj516vf8th60hnevjltge.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.take_a_bikev2",
+            "certificate_hash": "0789ba40e7cd42907b06cb453c0348e7f3512303"
+          }
+        },
+        {
+          "client_id": "49902264836-kaod2245b2qakrjuonjuetbd4e5ce0t1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpQDQ4Sno_b2dnPbVZvIZfu1OVZviMU4c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49902264836-kaod2245b2qakrjuonjuetbd4e5ce0t1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

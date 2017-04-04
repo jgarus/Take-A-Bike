@@ -15,7 +15,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/SplashTheme">
+        android:theme="@style/MainTheme" >
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -29,30 +29,33 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCRi-tfEQ2H1ap_-vMKojFuFIylv4BeEFg" />
 
-        <!--<activity android:name=".SplashScreenActivity">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+        <!-- <activity android:name=".SplashScreenActivity"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-        <activity android:name=".MainActivity"
-            android:theme="@style/MainTheme">
-            android:label="@string/title_activity_main">
-        </activity>
-        <activity android:name=".LoginActivity"
-            android:theme="@style/LoginTheme">
+
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <activity android:name=".SplashScreenActivity"
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            android:label="@string/title_activity_login">
         </activity>
+
+        <activity android:name=".MainActivity"
+            android:theme="@style/MainTheme"
+        android:label="@string/app_name">
+        </activity>
+
         <activity
             android:name=".MapsActivity"
+            android:theme="@style/MainTheme"
             android:label="@string/title_activity_maps">
         </activity>
+
     </application>
 
 </manifest>
