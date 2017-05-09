@@ -32,6 +32,9 @@ import java.util.regex.Pattern;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
+    //Tag for reference
+    private static final String TAG = "LoginFragment";
+
     EditText _emailText;
     EditText _passwordText;
     Button _loginButton;
@@ -43,13 +46,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_login, container, false);
 
-        //Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-
         _emailText = (EditText) view.findViewById(R.id.input_email);
         _passwordText = (EditText) view.findViewById(R.id.input_password);
         _loginButton = (Button) view.findViewById(R.id.btn_login);
         auth = FirebaseAuth.getInstance(); //Firebase
-
 
         //For testing
         _emailText.setText("dgreen88@uncc.edu");
@@ -96,13 +96,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity(), R.layout.progress_dialog);
-//        progressDialog.setIndeterminate(true);
-//        progressDialog.setMessage("Logging in...");
-        ProgressDialog.show(getActivity(), null, null);
-        progressDialog.setContentView(R.layout.progress_dialog);
-
-
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity(), R.style.Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Authenticating...");
+        progressDialog.show();
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
@@ -110,13 +107,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         onLoginSuccess();
                         progressDialog.dismiss();
                     }
-                }, 1250);
+                }, 3000);
     }
 
     public void onLoginSuccess() {
-        //Toast.makeText(getBaseContext(), "Login Successful", Toast.LENGTH_LONG).show();
-
-        _loginButton.setEnabled(true); //If the user is a student then open MainActivity
+        _loginButton.setEnabled(true); //If the user is a student then open MapsActivity
         Intent myIntent = new Intent(getActivity(), MapsActivity.class);
         LoginFragment.this.startActivity(myIntent);
         getActivity().finish();

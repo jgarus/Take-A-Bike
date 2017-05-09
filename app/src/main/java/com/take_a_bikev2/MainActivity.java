@@ -1,6 +1,5 @@
 package com.take_a_bikev2;
 
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -14,8 +13,8 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState == null){
             loginStart();
         }
-    }
 
+    }
 
     //Start the login fragment
     public void loginStart(){

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_userprofile"
+            android:icon="@drawable/user_profile_icon"
+            android:title="User Profile" />
+        <item
+            android:id="@+id/nav_areas"
+            android:icon="@drawable/areas_icon"
+            android:title="Areas" />
+        <item
+            android:id="@+id/nav_map"
+            android:checked="true"
+            android:icon="@drawable/map_icon"
+            android:title="Map" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/help_icon"
+            android:title="Help" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/about_icon"
+            android:title="About" />
+    </group>
+
+</menu>
