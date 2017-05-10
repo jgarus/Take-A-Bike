@@ -19,9 +19,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -53,7 +56,7 @@ import layout.UserProfile;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-        LocationListener, NavigationView.OnNavigationItemSelectedListener{
+        LocationListener, NavigationView.OnNavigationItemSelectedListener {
 
     private SelectFragment selectFragment;
 
@@ -250,116 +253,86 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-
-
-
+    //Side menu
     private void setTools() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //a place to put the drawer.xml
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-
-        //Initializing the drawer layout and actionbar toggle
+        //Initializing the drawer.xml layout and actionbar toggle
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name, R.string.app_name){
 
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
-                super.onDrawerClosed(drawerView);
-            }
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+        navigationView.setNavigationItemSelectedListener(this);
 
-                super.onDrawerOpened(drawerView);
-            }
-        };
-
-
-
-        // Item trigger on the navigation menu
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return false;
-            }
-        });
-
-
-        //setting the actionbarToggle to drawer layout
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
-
-        //necessary or hamburger menu won't show up
-        actionBarDrawerToggle.syncState();
     }
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        //calling the method displayselectedscreen and passing the id of selected menu
+        Log.e("inside", String.valueOf(item.getItemId()));
+        Log.e("maps", String.valueOf(R.id.map));
+        displaySelectedScreen(item.getItemId());
+        //make this method blank
+        return true;
+    }
 
-    
+    public void displaySelectedScreen(int itemId) {
+        //Creating fragment object
+        Fragment fragment = null;
+        //Initializing the fragment object which is selected
+        switch (itemId) {
+            case R.id.nav_userprofile:
+                fragment = new UserProfile();
+                break;
+            case R.id.nav_areas:
+                fragment = new Areas();
+                break;
+            case R.id.nav_help:
+                fragment = new Help();
+                break;
+            case R.id.nav_about:
+                fragment = new About();
+                break;
+            case R.id.map:
+               // fragment =
+                break;
+        }
 
-//    @Override
-//    public boolean onNavigationItemSelected(MenuItem item) {
-//        //calling the method displayselectedscreen and passing the id of selected menu
-//        Log.e("inside", String.valueOf(item.getItemId()));
-//        Log.e("maps", String.valueOf(R.id.map));
-//        displaySelectedScreen(item.getItemId());
-//        //make this method blank
-//        return true;
-//    }
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FragmentManager fm = getSupportFragmentManager();
+        //Replacing the fragment
+        //ft.remove(fragment).commit();
 
-//    public void displaySelectedScreen(int itemId) {
-//        //Creating fragment object
-//        Fragment fragment = null;
-//        //Initializing the fragment object which is selected
-//        switch (itemId) {
-//            case R.id.nav_userprofile:
-//                fragment = new UserProfile();
-//                break;
-//            case R.id.nav_areas:
-//                fragment = new Areas();
-//                break;
-//            case R.id.nav_help:
-//                fragment = new Help();
-//                break;
-//            case R.id.nav_about:
-//                fragment = new About();
-//                break;
-//            case R.id.map:
-//               // fragment =
-//                break;
-//        }
-//
-//        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        FragmentManager fm = getSupportFragmentManager();
-//        //Replacing the fragment
-//        //ft.remove(fragment).commit();
-//
-//        if ((fragment != null) && (itemId!=R.id.map)) {
-//            ft.replace(R.id.flContent, fragment);
-//            ft.commit();
-//        } else {
-//            ///ft.remove(fragment).commit();
-//            //ft.addToBackStack();
-//            //ft.commit();
-//            //ft.add(R.id.map, fragment).addToBackStack("fragBack").commit();
-//        }
-//
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-//        drawer.closeDrawer(GravityCompat.START);
-//    }
+        if ((fragment != null) && (itemId!=R.id.map)) {
+            ft.replace(R.id.flContent, fragment);
+            ft.commit();
+        } else {
+            ///ft.remove(fragment).commit();
+            //ft.addToBackStack();
+            //ft.commit();
+            //ft.add(R.id.map, fragment).addToBackStack("fragBack").commit();
+        }
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+    }
 
-//    @Override
-//    public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
 
 
     //Check is device is connected; WiFi, Cellular, GPS
